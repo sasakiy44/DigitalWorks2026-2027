@@ -1,0 +1,70 @@
+---
+import { getStudentProjects } from '../lib/github';
+
+const projects = await getStudentProjects();
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>学生作品ギャラリー 2026</title>
+  </head>
+  <body class="bg-gray-950 text-gray-100 p-8 min-h-screen">
+    <header class="max-w-6xl mx-auto mb-12">
+      <h1 class="text-4xl font-extrabold tracking-tight">学生作品ギャラリー</h1>
+      <p class="text-gray-400 mt-2">GitHub + Cloudflare Pages で構築された成果物一覧</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project) => {
+        // URLから自動でサムネイル（スクリーンショット）を生成する無料API
+        const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(project.homepage)}&screenshot=true&embed=screenshot.url`;
+
+        return (
+          <article class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-lg hover:border-indigo-500 transition duration-300 flex flex-col">
+            <div class="aspect-video w-full bg-gray-800 overflow-hidden">
+              <img 
+                src={screenshotUrl} 
+                alt={project.name} 
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center space-x-3 mb-4">
+                  <img src={project.owner.avatar_url} class="w-7 h-7 rounded-full" />
+                  <span class="text-xs text-gray-400 font-mono">@{project.owner.login}</span>
+                </div>
+                <h2 class="text-xl font-bold mb-2 text-white">{project.name}</h2>
+                <p class="text-gray-400 text-sm line-clamp-2 mb-4">
+                  {project.description || '説明なし'}
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between pt-4 border-t border-gray-800 mt-auto">
+                <a 
+                  href={project.homepage} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg transition"
+                >
+                  サイトを見る ↗
+                </a>
+                <a 
+                  href={project.html_url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="text-xs text-gray-400 hover:text-white transition"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </main>
+  </body>
+</html>
