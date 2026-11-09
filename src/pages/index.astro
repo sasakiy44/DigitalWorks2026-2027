@@ -5,12 +5,12 @@ const allProjects = await getStudentProjects();
 
 // Topics に 'featured' が含まれる作品を優秀作品として抽出
 const featuredProjects = allProjects.filter((project) =>
-  project.topics?.includes('featured')
+  project.topics?.includes('featured-2026')
 );
 
 // それ以外の作品
 const regularProjects = allProjects.filter(
-  (project) => !project.topics?.includes('featured')
+  (project) => !project.topics?.includes('featured-2026')
 );
 ---
 
