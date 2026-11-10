@@ -4,6 +4,8 @@ on:
   schedule:
     # 毎日 午前0時(JST) に自動再ビルド (UTC 15:00)
     - cron: '0 15 * * *'
+      timezone: 'Asia/Tokyo'
+
   workflow_dispatch: # GitHubのWeb画面から手動ボタン一発で再ビルド可能にする設定
 
 jobs:
