@@ -1,4 +1,4 @@
-# DigitalWorks2026-2027
+# Digital Show Room
 
 学生が **Cloudflare Pages** と **GitHub** を連携して公開した作品を、GitHub API を介して全自動で一元収集・表示するギャラリーポータルサイトです。
 
