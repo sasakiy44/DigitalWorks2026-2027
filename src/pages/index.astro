@@ -65,14 +65,14 @@ const regularProjects = allProjects.filter(
                   
                   <div class="p-5 sm:p-7 flex-1 flex flex-col justify-between space-y-4 sm:space-y-6">
                     <div>
-                      <div class="flex items-center space-x-2.5 sm:space-x-3 mb-2.5 sm:mb-3 min-w-0">
-                        <img src={project.owner.avatar_url} class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-gray-700 shrink-0" />
-                        <span class="text-xs sm:text-sm text-gray-300 font-mono truncate">@{project.owner.login}</span>
+                      {/* メタ情報：ユーザー名 / リポジトリ名（地味・控えめに表示） */}
+                      <div class="flex items-center space-x-2 mb-3 min-w-0 text-xs text-gray-400 font-mono">
+                        <img src={project.owner.avatar_url} class="w-5 h-5 rounded-full border border-gray-700 shrink-0" />
+                        <span class="truncate">@{project.owner.login} / <span class="text-gray-500">{project.name}</span></span>
                       </div>
-                      <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition truncate">
-                        {project.name}
-                      </h3>
-                      <p class="text-gray-300 text-xs sm:text-sm mt-2 line-clamp-3 leading-relaxed">
+
+                      {/* 主役：Description（大きく・目立つように） */}
+                      <p class="text-white text-base sm:text-lg font-medium leading-relaxed line-clamp-4 group-hover:text-amber-200 transition">
                         {project.description || '説明なし'}
                       </p>
                     </div>
@@ -115,7 +115,6 @@ const regularProjects = allProjects.filter(
           </span>
         </div>
 
-        {/* Responsive Grid: スマホ 1列 / タブレット 2列 / PC 3列 / 大型ディスプレイ 4列 */}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {regularProjects.map((project) => {
             const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(project.homepage)}&screenshot=true&embed=screenshot.url`;
@@ -133,14 +132,14 @@ const regularProjects = allProjects.filter(
                 
                 <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
                   <div>
-                    <div class="flex items-center space-x-2 mb-2.5 min-w-0">
-                      <img src={project.owner.avatar_url} class="w-5 h-5 sm:w-6 sm:h-6 rounded-full shrink-0" />
-                      <span class="text-xs text-gray-400 font-mono truncate">@{project.owner.login}</span>
+                    {/* メタ情報：ユーザー名 / リポジトリ名（地味・控えめに表示） */}
+                    <div class="flex items-center space-x-2 mb-2.5 min-w-0 text-xs text-gray-400 font-mono">
+                      <img src={project.owner.avatar_url} class="w-4 h-4 rounded-full shrink-0" />
+                      <span class="truncate">@{project.owner.login} / <span class="text-gray-500">{project.name}</span></span>
                     </div>
-                    <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-indigo-400 transition truncate">
-                      {project.name}
-                    </h3>
-                    <p class="text-gray-400 text-xs mt-1 line-clamp-2">
+
+                    {/* 主役：Description（大きく・目立つように） */}
+                    <p class="text-gray-100 text-sm sm:text-base font-normal leading-normal line-clamp-3 group-hover:text-indigo-300 transition">
                       {project.description || '説明なし'}
                     </p>
                   </div>
