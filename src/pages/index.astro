@@ -22,7 +22,7 @@ const regularProjects = allProjects.filter(
     <title>Student Work Gallery 2026</title>
   </head>
   <body class="bg-yellow-300 text-gray-900 p-4 sm:p-6 md:p-12 min-h-screen">
-    {/* ヘッダー */}
+    <!-- ヘッダー -->
     <header class="max-w-7xl mx-auto mb-10 sm:mb-16 text-center md:text-left">
       <span class="inline-block text-lg sm:text-2xl font-bold bg-gray-50 text-gray-900 tracking-wide px-4 sm:px-6 py-2.5 sm:py-3 rounded-full border border-gray-50 shadow-sm">
         🎨 STUDENT WORK GALLERY
@@ -31,7 +31,7 @@ const regularProjects = allProjects.filter(
 
     <main class="max-w-7xl mx-auto space-y-12 sm:space-y-16">
 
-      {/* ================= 優秀作品 (Featured Section) ================= */}
+      <!-- ================= 優秀作品 (Featured Section) ================= -->
       {featuredProjects.length > 0 && (
         <section class="space-y-4 sm:space-y-6">
           <div class="flex flex-wrap items-center gap-2 sm:gap-3 border-b border-amber-500/30 pb-3">
@@ -50,7 +50,7 @@ const regularProjects = allProjects.filter(
 
               return (
                 <article class="relative bg-gradient-to-b from-gray-900 to-gray-950 border-2 border-amber-500/40 rounded-2xl overflow-hidden shadow-2xl shadow-amber-500/10 hover:border-amber-400 transition-all duration-300 group flex flex-col">
-                  {/* 優秀作品バッジ */}
+                  <!-- 優秀作品バッジ -->
                   <div class="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-gradient-to-r from-amber-500 to-orange-500 text-black text-[10px] sm:text-xs font-black px-2.5 py-1 rounded-full shadow-md uppercase tracking-wider">
                     ★ Featured
                   </div>
@@ -66,13 +66,13 @@ const regularProjects = allProjects.filter(
                   
                   <div class="p-5 sm:p-7 flex-1 flex flex-col justify-between space-y-4 sm:space-y-6">
                     <div>
-                      {/* メタ情報：ユーザー名 / リポジトリ名 */}
+                      <!-- メタ情報：ユーザー名 / リポジトリ名 -->
                       <div class="flex items-center space-x-2 mb-3 min-w-0 text-xs text-gray-400 font-mono">
                         <img src={project.owner.avatar_url} class="w-5 h-5 rounded-full border border-gray-700 shrink-0" />
                         <span class="truncate">@{project.owner.login} / <span class="text-gray-500">{project.name}</span></span>
                       </div>
 
-                      {/* 主役：Description */}
+                      <!-- 主役：Description -->
                       <p class="text-white text-base sm:text-lg font-medium leading-relaxed line-clamp-4 group-hover:text-amber-200 transition">
                         {project.description || '説明なし'}
                       </p>
@@ -93,3 +93,83 @@ const regularProjects = allProjects.filter(
                         rel="noopener noreferrer"
                         class="text-xs text-gray-400 hover:text-white transition font-mono truncate"
                       >
+                        GitHub ↗
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      <!-- ================= 通常作品 (Regular Section) ================= -->
+      <section class="space-y-4 sm:space-y-6">
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 border-b border-gray-800 pb-3">
+          <span class="text-lg sm:text-xl">🗂</span>
+          <h2 class="text-lg sm:text-xl font-bold text-gray-700 tracking-wide">
+            ALL PROJECTS
+          </h2>
+          <span class="text-xs text-gray-500 font-mono">
+            ({regularProjects.length})
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+          {regularProjects.map((project) => {
+            const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(project.homepage)}&screenshot=true&embed=screenshot.url`;
+
+            return (
+              <article class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-lg hover:border-indigo-500/60 transition duration-300 flex flex-col group">
+                <div class="aspect-video w-full bg-gray-800 overflow-hidden">
+                  <img 
+                    src={screenshotUrl} 
+                    alt={project.name} 
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    loading="lazy"
+                  />
+                </div>
+                
+                <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
+                  <div>
+                    <!-- メタ情報：ユーザー名 / リポジトリ名 -->
+                    <div class="flex items-center space-x-2 mb-2.5 min-w-0 text-xs text-gray-400 font-mono">
+                      <img src={project.owner.avatar_url} class="w-4 h-4 rounded-full shrink-0" />
+                      <span class="truncate">@{project.owner.login} / <span class="text-gray-500">{project.name}</span></span>
+                    </div>
+
+                    <!-- 主役：Description -->
+                    <p class="text-gray-100 text-sm sm:text-base font-normal leading-normal line-clamp-3 group-hover:text-indigo-300 transition">
+                      {project.description || '説明なし'}
+                    </p>
+                  </div>
+
+                  <div class="flex items-center justify-between pt-3 border-t border-gray-800 gap-2">
+                    <a 
+                      href={project.homepage} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="px-3 py-1.5 bg-gray-200 hover:bg-gray-400 text-black text-xs font-semibold rounded-lg transition shrink-0"
+                    >
+                      サイトを見る ↗
+                    </a>
+                    <a 
+                      href={project.html_url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="text-xs text-gray-500 hover:text-gray-300 transition truncate"
+                    >
+                      GitHub ↗
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+    </main>
+  </body>
+</html>
