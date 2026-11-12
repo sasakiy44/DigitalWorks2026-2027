@@ -20,21 +20,22 @@ const regularProjects = allProjects.filter(
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Work Gallery 2026</title>
   </head>
-  <body class="bg-yellow-300 text-gray-900 p-6 md:p-12 min-h-screen">
-    <header class="max-w-6xl mx-auto mb-16 text-center md:text-left">
-      <span class="text-2xl font-bold bg-gray-50 text-gray-900 tracking-wide px-4 py-2 rounded-full border border-gray-50">
+  <body class="bg-yellow-300 text-gray-900 p-4 sm:p-6 md:p-12 min-h-screen">
+    {/* ヘッダー */}
+    <header class="max-w-7xl mx-auto mb-10 sm:mb-16 text-center md:text-left">
+      <span class="inline-block text-lg sm:text-2xl font-bold bg-gray-50 text-gray-900 tracking-wide px-4 sm:px-6 py-2.5 sm:py-3 rounded-full border border-gray-50 shadow-sm">
         🎨 STUDENT WORK GALLERY
       </span>
     </header>
 
-    <main class="max-w-6xl mx-auto space-y-16">
+    <main class="max-w-7xl mx-auto space-y-12 sm:space-y-16">
 
       {/* ================= 優秀作品 (Featured Section) ================= */}
       {featuredProjects.length > 0 && (
-        <section class="space-y-6">
-          <div class="flex items-center space-x-3 border-b border-amber-500/30 pb-3">
-            <span class="text-2xl">🏆</span>
-            <h2 class="text-2xl font-bold text-gray-700 tracking-wide">
+        <section class="space-y-4 sm:space-y-6">
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3 border-b border-amber-500/30 pb-3">
+            <span class="text-xl sm:text-2xl">🏆</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-700 tracking-wide">
               FEATURED WORKS
             </h2>
             <span class="bg-rose-500/20 text-rose-600 text-xs font-semibold px-2.5 py-1 rounded-full border border-rose-500/60">
@@ -42,14 +43,14 @@ const regularProjects = allProjects.filter(
             </span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {featuredProjects.map((project) => {
               const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(project.homepage)}&screenshot=true&embed=screenshot.url`;
 
               return (
                 <article class="relative bg-gradient-to-b from-gray-900 to-gray-950 border-2 border-amber-500/40 rounded-2xl overflow-hidden shadow-2xl shadow-amber-500/10 hover:border-amber-400 transition-all duration-300 group flex flex-col">
                   {/* 優秀作品バッジ */}
-                  <div class="absolute top-4 right-4 z-10 bg-gradient-to-r from-amber-500 to-orange-500 text-black text-xs font-black px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
+                  <div class="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-gradient-to-r from-amber-500 to-orange-500 text-black text-[10px] sm:text-xs font-black px-2.5 py-1 rounded-full shadow-md uppercase tracking-wider">
                     ★ Featured
                   </div>
 
@@ -62,26 +63,26 @@ const regularProjects = allProjects.filter(
                     />
                   </div>
                   
-                  <div class="p-7 flex-1 flex flex-col justify-between space-y-6">
+                  <div class="p-5 sm:p-7 flex-1 flex flex-col justify-between space-y-4 sm:space-y-6">
                     <div>
-                      <div class="flex items-center space-x-3 mb-3">
-                        <img src={project.owner.avatar_url} class="w-8 h-8 rounded-full border border-gray-700" />
-                        <span class="text-sm text-gray-300 font-mono">@{project.owner.login}</span>
+                      <div class="flex items-center space-x-2.5 sm:space-x-3 mb-2.5 sm:mb-3 min-w-0">
+                        <img src={project.owner.avatar_url} class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-gray-700 shrink-0" />
+                        <span class="text-xs sm:text-sm text-gray-300 font-mono truncate">@{project.owner.login}</span>
                       </div>
-                      <h3 class="text-2xl font-bold text-white group-hover:text-amber-300 transition">
+                      <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition truncate">
                         {project.name}
                       </h3>
-                      <p class="text-gray-300 text-sm mt-2 line-clamp-3 leading-relaxed">
+                      <p class="text-gray-300 text-xs sm:text-sm mt-2 line-clamp-3 leading-relaxed">
                         {project.description || '説明なし'}
                       </p>
                     </div>
 
-                    <div class="flex items-center justify-between pt-4 border-t border-gray-800/80">
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-800/80 gap-2">
                       <a 
                         href={project.homepage} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold rounded-xl transition shadow-lg shadow-amber-500/20"
+                        class="px-4 sm:px-5 py-2 sm:py-2.5 bg-amber-500 hover:bg-amber-400 text-black text-xs font-bold rounded-xl transition shadow-lg shadow-amber-500/20 shrink-0"
                       >
                         サイトを見る ↗
                       </a>
@@ -89,7 +90,7 @@ const regularProjects = allProjects.filter(
                         href={project.html_url} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        class="text-xs text-gray-400 hover:text-white transition font-mono"
+                        class="text-xs text-gray-400 hover:text-white transition font-mono truncate"
                       >
                         GitHub ↗
                       </a>
@@ -103,10 +104,10 @@ const regularProjects = allProjects.filter(
       )}
 
       {/* ================= 通常作品 (Regular Section) ================= */}
-      <section class="space-y-6">
-        <div class="flex items-center space-x-3 border-b border-gray-800 pb-3">
-          <span class="text-xl">🗂</span>
-          <h2 class="text-xl font-bold text-gray-700 tracking-wide">
+      <section class="space-y-4 sm:space-y-6">
+        <div class="flex flex-wrap items-center gap-2 sm:gap-3 border-b border-gray-800 pb-3">
+          <span class="text-lg sm:text-xl">🗂</span>
+          <h2 class="text-lg sm:text-xl font-bold text-gray-700 tracking-wide">
             ALL PROJECTS
           </h2>
           <span class="text-xs text-gray-500 font-mono">
@@ -114,7 +115,8 @@ const regularProjects = allProjects.filter(
           </span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Responsive Grid: スマホ 1列 / タブレット 2列 / PC 3列 / 大型ディスプレイ 4列 */}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
           {regularProjects.map((project) => {
             const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(project.homepage)}&screenshot=true&embed=screenshot.url`;
 
@@ -129,13 +131,13 @@ const regularProjects = allProjects.filter(
                   />
                 </div>
                 
-                <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
                   <div>
-                    <div class="flex items-center space-x-2 mb-3">
-                      <img src={project.owner.avatar_url} class="w-6 h-6 rounded-full" />
-                      <span class="text-xs text-gray-400 font-mono">@{project.owner.login}</span>
+                    <div class="flex items-center space-x-2 mb-2.5 min-w-0">
+                      <img src={project.owner.avatar_url} class="w-5 h-5 sm:w-6 sm:h-6 rounded-full shrink-0" />
+                      <span class="text-xs text-gray-400 font-mono truncate">@{project.owner.login}</span>
                     </div>
-                    <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">
+                    <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-indigo-400 transition truncate">
                       {project.name}
                     </h3>
                     <p class="text-gray-400 text-xs mt-1 line-clamp-2">
@@ -143,12 +145,12 @@ const regularProjects = allProjects.filter(
                     </p>
                   </div>
 
-                  <div class="flex items-center justify-between pt-3 border-t border-gray-800">
+                  <div class="flex items-center justify-between pt-3 border-t border-gray-800 gap-2">
                     <a 
                       href={project.homepage} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      class="px-3 py-1.5 bg-gray-200 hover:bg-gray-400 text-black text-xs font-semibold rounded-lg transition"
+                      class="px-3 py-1.5 bg-gray-200 hover:bg-gray-400 text-black text-xs font-semibold rounded-lg transition shrink-0"
                     >
                       サイトを見る ↗
                     </a>
@@ -156,7 +158,7 @@ const regularProjects = allProjects.filter(
                       href={project.html_url} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      class="text-xs text-gray-500 hover:text-gray-300 transition"
+                      class="text-xs text-gray-500 hover:text-gray-300 transition truncate"
                     >
                       GitHub ↗
                     </a>
